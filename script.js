@@ -2,6 +2,12 @@ const routes = ['home', 'overview', 'academy', 'playbook', 'certificate', 'bots'
 const titleMap = { home: 'Home', overview: 'Overview', academy: 'Academy', playbook: 'My playbook', certificate: 'Certificate', bots: 'EA bots', checklist: 'Trade checklist' };
 const toast = document.getElementById('toast');
 
+document.body.innerHTML = document.body.innerHTML
+  .replaceAll('AXIOM', 'BILLIONAIRE')
+  .replaceAll('Axiom', 'Billionaire')
+  .replaceAll('AXM', 'BTA')
+  .replaceAll('axiom', 'billionaire');
+
 function showToast(message) {
   toast.textContent = message;
   toast.classList.add('show');
@@ -68,11 +74,11 @@ document.querySelectorAll('.quiz-options button').forEach((button) => button.add
 }));
 
 document.getElementById('downloadPdf').addEventListener('click', () => {
-  const pdfContent = 'AXIOM TRADE ACADEMY\nTrading Psychology Workbook\n\nReflection prompt: What does a good loss look like in your process?';
+  const pdfContent = 'BILLIONAIRE ACADEMY\nTrading Psychology Workbook\n\nReflection prompt: What does a good loss look like in your process?';
   const blob = new Blob([pdfContent], { type: 'application/pdf' });
   const link = document.createElement('a');
   link.href = URL.createObjectURL(blob);
-  link.download = 'axiom-trading-psychology-workbook.pdf';
+  link.download = 'billionaire-academy-trading-psychology-workbook.pdf';
   link.click();
   URL.revokeObjectURL(link.href);
   showToast('Workbook download started.');
@@ -81,11 +87,11 @@ document.getElementById('downloadPdf').addEventListener('click', () => {
 document.getElementById('savePlan').addEventListener('click', () => {
   const plan = {};
   document.querySelectorAll('.form-panel input, .form-panel textarea').forEach((field) => { plan[field.id] = field.value; });
-  localStorage.setItem('axiomPlan', JSON.stringify(plan));
+  localStorage.setItem('billionairePlan', JSON.stringify(plan));
   document.getElementById('savedLabel').textContent = 'Saved just now';
   showToast('Saved to your private workspace.');
 });
-const savedPlan = JSON.parse(localStorage.getItem('axiomPlan') || 'null');
+const savedPlan = JSON.parse(localStorage.getItem('billionairePlan') || 'null');
 if (savedPlan) Object.entries(savedPlan).forEach(([id, value]) => { const field = document.getElementById(id); if (field) field.value = value; });
 
 const checkboxes = [...document.querySelectorAll('.large-check input')];
